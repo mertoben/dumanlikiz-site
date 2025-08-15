@@ -20,9 +20,9 @@ export default function Home() {
             </div>
           </div>
           <picture>
-            {/* Telifsiz, Ege hissi veren görsel (yer tutucu). Canlıda kendi fotoğrafınızı koyabilirsiniz. */}
+            {/* Ege hissi veren görsel (yer tutucu). */}
             <img
-              src="https://images.unsplash.com/photo-1526483360412-f4dbaf036963?q=80&w=1600&auto=format&fit=crop"
+              src="/background.png"
               alt="Ege sahili"
               className="h-full w-full object-cover"
             />
