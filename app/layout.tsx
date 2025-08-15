@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="border-b bg-white">
           <div className="containered flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="Dumanlıkız logo" className="h-10 w-auto" />
+              <img src="/logo.png" alt="Dumanlıkız logo" className="h-10 w-auto logo-shadow" />
               <span className="font-semibold">Dumanlıkız Sitesi</span>
             </Link>
             <nav className="flex gap-4 text-sm">
