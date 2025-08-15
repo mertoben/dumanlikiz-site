@@ -1,0 +1,14 @@
+'use client';import { useEffect,useState } from 'react'; type Res={id:number;gazebo_id:number;date:string;start_time:string;end_time:string;unit_number:string;name:string;phone?:string;note?:string};
+export default function AdminPage(){const[key,setKey]=useState('');const[ok,setOk]=useState(false);const[list,setList]=useState<Res[]>([]);const[fromDate,setFromDate]=useState<string>('');
+const load=async(k:string,d?:string)=>{const res=await fetch('/api/admin/reservations'+(d?`?from=${d}`:''),{headers:{'x-admin-key':k}});if(res.status===401){setOk(false);return;}const data=await res.json();setList(data);setOk(true);};
+useEffect(()=>{const saved=localStorage.getItem('adminKey')||'';if(saved){setKey(saved);load(saved);}},[]);
+const onLogin=()=>{localStorage.setItem('adminKey',key);load(key);};
+const remove=async(id:number)=>{if(!confirm('Silinsin mi?'))return;const res=await fetch('/api/admin/reservations?id='+id,{method:'DELETE',headers:{'x-admin-key':key}});if(res.status===200)setList(list.filter(x=>x.id!==id));};
+return(<div className='space-y-6'><h1 className='text-2xl font-bold'>Yönetim / Rezervasyonlar</h1>
+{!ok?(<div className='card p-6 max-w-md'><label>Yönetici Anahtarı</label><input value={key} onChange={e=>setKey(e.target.value)} placeholder='ENV: ADMIN_KEY'/>
+<button onClick={onLogin} className='btn btn-primary mt-3'>Giriş</button><p className='text-xs text-gray-600 mt-2'>.env.local içinde <b>ADMIN_KEY</b> tanımlayın. Varsayılan: <code>changeme</code></p></div>):
+(<div className='card p-6'><div className='flex items-end gap-3 mb-4'><div><label>Başlangıç Tarihi (opsiyonel)</label><input type='date' value={fromDate} onChange={e=>setFromDate(e.target.value)}/></div>
+<button onClick={()=>load(key,fromDate||undefined)} className='btn btn-secondary'>Listeyi Yenile</button></div>
+<div className='overflow-x-auto'><table className='min-w-full text-sm'><thead><tr className='text-left border-b'><th className='py-2 pr-4'>Tarih</th><th className='py-2 pr-4'>Saat</th><th className='py-2 pr-4'>Çardak</th><th className='py-2 pr-4'>Daire</th><th className='py-2 pr-4'>Ad Soyad</th><th className='py-2 pr-4'>Telefon</th><th className='py-2 pr-4'>Not</th><th className='py-2'>İşlem</th></tr></thead>
+<tbody>{list.map(r=>(<tr key={r.id} className='border-b'><td className='py-2 pr-4'>{r.date}</td><td className='py-2 pr-4'>{r.start_time} - {r.end_time}</td><td className='py-2 pr-4'>{r.gazebo_id}</td><td className='py-2 pr-4'>{r.unit_number}</td><td className='py-2 pr-4'>{r.name}</td><td className='py-2 pr-4'>{r.phone}</td><td className='py-2 pr-4'>{r.note}</td><td className='py-2'><button onClick={()=>remove(r.id)} className='btn btn-secondary'>Sil</button></td></tr>))}</tbody></table></div></div>)}
+</div>) }

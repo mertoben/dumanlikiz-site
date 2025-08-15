@@ -1,0 +1,3 @@
+import ReservationClient from '@/components/ReservationClient'; export const dynamic='force-dynamic';
+export default function ReservationsPage(){return(<div className='space-y-6'><div className='flex flex-col gap-2'><h1 className='text-2xl font-bold'>Çardak Rezervasyon</h1>
+<p className='text-gray-700 text-sm'>Tarih ve çardak seçip uygun saat aralığı için rezervasyon oluşturabilirsiniz. Günlük limit: <b>her daire için en fazla 2 saat</b>.</p></div><ReservationClient/></div>) }
