@@ -1,6 +1,77 @@
-@tailwind base;@tailwind components;@tailwind utilities;
-:root{--brand:#0f766e}body{@apply bg-gray-50 text-gray-900}.containered{@apply max-w-6xl mx-auto px-4}
-.btn{@apply inline-flex items-center justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium transition}
-.btn-primary{@apply bg-teal-700 text-white hover:bg-teal-800}.btn-secondary{@apply bg-white text-gray-900 border-gray-300 hover:bg-gray-50}
-.card{@apply bg-white rounded-xl shadow-sm border border-gray-200}input,select,textarea{@apply border border-gray-300 rounded-md px-3 py-2 w-full}
-label{@apply text-sm font-medium text-gray-700}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========
+   Tema (Ege/Edremit)
+   ========= */
+:root{
+  --brand: #0b6b6f;   /* Ege denizi - teal */
+  --brand-2: #7a9f35; /* Zeytin yeşili  */
+  --sand: #f2efe6;    /* Kum beji       */
+  --ink: #0f172a;     /* Lacivert ton metin */
+}
+
+/* Temel görünüm */
+html { scroll-behavior: smooth; }
+body {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+/* Linkler */
+a { color: var(--brand); }
+a:hover { text-decoration: underline; }
+
+/* Konteyner */
+.containered { @apply max-w-6xl mx-auto px-4; }
+
+/* Kart */
+.card { @apply bg-white rounded-xl shadow-sm border border-gray-200; }
+
+/* Butonlar */
+.btn {
+  @apply inline-flex items-center justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium transition;
+}
+.btn-primary {
+  background: var(--brand);
+  color: white;
+}
+.btn-primary:hover { filter: brightness(0.95); }
+.btn-secondary { @apply bg-white text-gray-900 border-gray-300 hover:bg-gray-50; }
+
+/* Rozetler */
+.badge { @apply inline-flex items-center px-3 py-1 rounded-full text-xs; }
+.badge-olive { background: #e9f3d6; color: #4d6b17; }
+
+/* Bölüm boşluk yardımcıları */
+.section { @apply containered py-10; }
+
+/* Form elemanları */
+input, select, textarea {
+  @apply border border-gray-300 rounded-md px-3 py-2 w-full;
+  background: white;
+}
+label { @apply text-sm font-medium text-gray-700; }
+
+/* Odak (erişilebilirlik) */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Header/Footer yardımcıları */
+header { @apply border-b bg-white; }
+footer { @apply text-sm text-gray-600; }
+
+/* Görseller */
+img { @apply block max-w-full; }
+
+/* Prose (metin içerik) */
+.prose h1 { @apply text-2xl md:text-3xl font-bold; }
+.prose h2 { @apply text-xl md:text-2xl font-semibold; }
+.prose p  { @apply text-gray-700; }
+
+/* Küçük yardımcılar */
+.muted   { @apply text-gray-600; }
+.kicker  { @apply uppercase tracking-wide text-xs font-semibold text-gray-600; }
